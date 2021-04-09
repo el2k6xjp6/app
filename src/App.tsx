@@ -29,7 +29,7 @@ function Row(props: rowProps) {
 }
 
 function App() {
-  const [k, setK] = useState(+"");
+  const [k, setK] = useState(3);
   const [textList, setTextList] = useState([] as Array<string>);
   const [isChange, setIsChange] = useState(false);
 
