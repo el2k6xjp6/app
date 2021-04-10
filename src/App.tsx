@@ -15,7 +15,7 @@ function Row(props: rowProps) {
   const { index, text, handleUpdateText, handleDeleteRow } = props;
   return (
     <RowContainer>
-      <Index>{index}</Index>
+      <Index>{index + 1}</Index>
       <Text
         value={text}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleUpdateText(index, e.currentTarget.value) }}
@@ -32,6 +32,8 @@ function App() {
   const [k, setK] = useState(3);
   const [textList, setTextList] = useState([] as Array<string>);
   const [isChange, setIsChange] = useState(false);
+  const [collisionTable, setCollisionTable] = useState([] as Array<Array<number>>);
+  const [collisionList, setCollisionList] = useState([] as Array<Array<number>>);
 
   function handleUpdateText(index: number, text: string) {
     textList[index] = text;
@@ -46,29 +48,29 @@ function App() {
   }
 
   function handleDeleteRow(index: number) {
-    textList.splice(index, 1)
+    textList.splice(index, 1);
     setTextList(textList);
     setIsChange(!isChange);
   }
 
   function handleChangeK(e: React.ChangeEvent<HTMLInputElement>) {
-    const n = +e.currentTarget.value
+    const n = +e.currentTarget.value;
     if (!isNaN(n - 0) && n < Number.MAX_SAFE_INTEGER) {
-      setK(n)
+      setK(n);
     }
   }
 
   return (
     <Container>
-      {textList.map((text: string, index: number) => {
-        return Row({ text, index, handleUpdateText, handleDeleteRow })
-      })}
-      <AddButton onClick={handleAddRow}>Add Button</AddButton>
+      <AddButton onClick={handleAddRow}>Add row</AddButton>
       <K
         value={k}
         placeholder="K"
         onInput={handleChangeK}
       />
+      {textList.map((text: string, index: number) => {
+        return Row({ text, index, handleUpdateText, handleDeleteRow })
+      })}
     </Container>
   );
 }
