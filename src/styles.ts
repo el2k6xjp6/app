@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin: 50px 10%;
   text-align: -webkit-center;
   padding: 10px;
-  font-size: 2rem;
+  font-size: 1.8rem;
 `
 
 export const RowContainer = styled.div`
